@@ -1,7 +1,7 @@
 ---
-import FormattedDate from "@/components/FormattedDate.astro";
-import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
+import FormattedDate from '@/components/FormattedDate.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 
 interface Props {
   currentTitle: string;
@@ -10,12 +10,10 @@ interface Props {
 
 const { currentTitle, currentTags = [] } = Astro.props;
 
-const otherPosts = (await getCollection("blog"))
+const otherPosts = (await getCollection('blog'))
   .filter((post) => !post.data.draft && post.data.title !== currentTitle)
   .map((page) => {
-    const tagOverlap = currentTags.filter((tag) =>
-      page.data.tags?.includes(tag),
-    ).length;
+    const tagOverlap = currentTags.filter((tag) => page.data.tags?.includes(tag)).length;
 
     return {
       ...page,
@@ -36,12 +34,9 @@ const otherPosts = (await getCollection("blog"))
   <div class="flex flex-col gap-8">
     {
       otherPosts.map((post) => {
-        <a
-          href={`/blog/${post.id}`}
-          class="group grid cursor-pointer grid-cols-1 items-center gap-4 lg:grid-cols-12"
-        >
+        <a href={`/blog/${post.id}`} class="group grid cursor-pointer grid-cols-1 items-center gap-4 lg:grid-cols-12">
           {post.data.heroImage && (
-            <div class="col-span-1 flex-shrink-0 lg:col-span-4">
+            <div class="col-span-1 shrink-0 lg:col-span-4">
               <div class="relative h-full w-full">
                 <Image
                   src={post.data.heroImage}
@@ -58,10 +53,7 @@ const otherPosts = (await getCollection("blog"))
             <p class="text-muted-foreground line-clamp-3 text-sm underline-offset-4 group-hover:underline">
               {post.data.description}
             </p>
-            <FormattedDate
-              date={post.data.pubDate}
-              className="text-muted-foreground block text-xs font-medium"
-            />
+            <FormattedDate date={post.data.pubDate} className="text-muted-foreground block text-xs font-medium" />
           </div>
         </a>;
       })

@@ -1,15 +1,13 @@
 ---
-import { SITE_AUTHOR } from "@/consts";
+import { SITE_AUTHOR } from '@/consts';
 
 const date = new Date();
 ---
 
 <footer class="bg-background border-border mt-16 border-t">
-  <div
-    class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-2 p-6 sm:flex-row"
-  >
+  <div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-2 p-6 sm:flex-row">
     <p class="text-muted-foreground text-center text-sm sm:text-left">
-      &copy; {new Date().getFullYear()} All rights reserved.
+      &copy; {date.getFullYear()} All rights reserved.
     </p>
     <div class="text-muted-foreground text-center text-sm sm:text-right">
       site réalisé par {SITE_AUTHOR}
