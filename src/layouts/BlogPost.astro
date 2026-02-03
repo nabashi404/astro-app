@@ -1,0 +1,95 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import Divider from "@/components/ui/divider";
+import { BackgroundBeams } from "@/components/ui/background-beams";
+import FormattedDate from "@/components/FormattedDate.astro";
+import ReadMoreSection from "@/components/ReadMoreSection.astro";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description, author, tags, pubDate, heroImage } = Astro.props;
+---
+
+<Layout>
+  <div class="bg-background relative min-h-screen">
+    <div
+      class="absolute top-0 left-0 z-0 h-[200px] w-full [mask-image:linear-gradient(to_top,transparent_25%,black_95%)]"
+    >
+      <BackgroundBeams client:load />
+    </div>
+
+    <div class="border-border relative z-10 space-y-4 border-b">
+      <div class="mx-auto flex max-w-5xl flex-col gap-6 p-6">
+        <div
+          class="text-muted-foreground flex flex-wrap items-center gap-3 gap-y-5 text-sm"
+        >
+          <Button variant="outline" asChild className="h-6 w-6">
+            <a href="/">
+              <ArrowLeft className="h-4 w-4" />
+              <span class="sr-only">Back to all articles</span>
+            </a>
+          </Button>
+          {
+            tags && tags.length > 0 && (
+              <div class="text-muted-foreground flex flex-wrap gap-3">
+                {tags.map((tag: string) => (
+                  <span class="bg-muted text-muted-foreground flex h-6 w-fit items-center justify-center rounded-md border px-3 text-sm font-medium">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )
+          }
+          <time class="text-muted-foreground font-medium">
+            <FormattedDate date={pubDate} />
+          </time>
+        </div>
+
+        <h1
+          class="text-4xl font-medium tracking-tighter text-balance md:text-5xl lg:text-6xl"
+        >
+          {title}
+        </h1>
+
+        {
+          description && (
+            <p class="text-muted-foreground max-w-5xl md:text-lg md:text-balance">
+              {description}
+            </p>
+          )
+        }
+      </div>
+    </div>
+    <div class="relative z-10 mx-auto mt-16 flex max-w-5xl px-4 md:px-0">
+      <main class="w-full overflow-hidden p-0">
+        {
+          heroImage && (
+            <Image
+              src={heroImage}
+              alt={title}
+              class="relative h-[500px] w-full overflow-hidden object-cover"
+            />
+          )
+        }
+        <div class="p-6 lg:p-10">
+          <div
+            class="prose dark:prose-invert prose-headings:scroll-mt-8 prose-headings:font-semibold prose-a:no-underline prose-headings:tracking-tight prose-headings:text-balance prose-p:tracking-tight prose-p:text-balance prose-lg max-w-none"
+          >
+            <slot />
+          </div>
+        </div>
+        <Divider className="mx-auto my-16 max-w-[85%] sm:my-20"
+          >READ MORE</Divider
+        >
+
+        <div class="mt-10">
+          <ReadMoreSection currentTitle={title} currentTags={tags} />
+        </div>
+      </main>
+    </div>
+  </div>
+</Layout>

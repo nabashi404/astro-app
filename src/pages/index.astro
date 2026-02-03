@@ -1,0 +1,55 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import Socials from "@/components/Socials.astro";
+import banner from "@/assets/banner.jpg";
+import Divider from "@/components/ui/divider";
+import BentoGrid from "@/components/BentoGrid.astro";
+import { Image } from "astro:assets";
+import { SITE_AUTHOR } from "@/consts";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const bentoGridItems = posts
+  .filter((post) => !post.data.draft)
+  .map((post) => {
+    return {
+      href: `/blog/${post.id}`,
+      title: post.data.title,
+      description: post.data.description,
+      pubDate: post.data.pubDate,
+      heroImage: post.data.heroImage,
+    };
+  });
+---
+
+<Layout>
+  <div class="mx-auto max-w-5xl px-6">
+    <section class="py-12 sm:py-16 lg:py-20">
+      <Image
+        src={banner}
+        alt="banner"
+        class="h-[200px] w-full rounded-[16px] object-cover sm:h-[300px] lg:h-[420px]"
+      />
+    </section>
+    <section class="prose dark:prose-invert">
+      <p>
+        Je me présente <b>{SITE_AUTHOR}</b> un passionné qui partage ses recherches
+        et ses expériences personnelles dans le domaine de la cyber sécurité.
+      </p>
+      <p>
+        Actuellement ouvert aux missions ou opportunités professionnelles, vous
+        pouvez me contacter à l’adresse suivante <u>nabashi@tutamail.com</u>
+      </p>
+    </section>
+    <section class="my-6">
+      <Socials />
+    </section>
+
+    <Divider className="mx-auto my-16 max-w-[85%] sm:my-20">BLOG</Divider>
+
+    <BentoGrid items={bentoGridItems} />
+  </div>
+</Layout>

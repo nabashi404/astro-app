@@ -1,0 +1,24 @@
+---
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
+import { SITE_TITLE } from "@/consts";
+---
+
+<header
+  class="border-border/40 bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-20 w-full border-b backdrop-blur"
+>
+  <div
+    class="mx-auto flex h-14 w-full max-w-5xl items-center justify-between px-6"
+  >
+    <div class="mr-4 flex">
+      <a href="/">
+        {SITE_TITLE}
+      </a>
+    </div>
+
+    <div class="flex w-full flex-1 justify-end">
+      <nav class="flex items-center">
+        <AnimatedThemeToggler client:load />
+      </nav>
+    </div>
+  </div>
+</header>
