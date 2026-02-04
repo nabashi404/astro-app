@@ -1,6 +1,7 @@
 ---
 title: "Prise de contrôle d'un compte de cashback en un seul clic depuis n'importe qu'elle autre site web"
-description: "Comment une série de mauvaises pratiques web m’a permis de prendre le contrôle de n'importe quel compte en un seul clic, simplement en visitant un site web contenant du code malveillant"
+description: "Comment une série de mauvaises pratiques web m’a permis de prendre le contrôle de n'importe quel compte en un seul clic, simplement en visitant un site web contenant un code malveillant"
+tags: ['CORS', 'XSS']
 pubDate: '2026-02-03'
 heroImage: '@/assets/images/prise-de-controle-dun-compte-en-un-seul-clic-sur-nimporte-quelle-site-web.png'
 ---
@@ -13,8 +14,8 @@ Une question s’est alors imposée : _Comment l’application identifie-t-elle 
 
 ## Un communication inter-sites excessivement permissif
 
-L’un des premiers comportements notables concerne la configuration CORS particulièrement permissive.
-Sans entrer dans les détails techniques à ce stade, l’application autorisé des requêtes JavaScript provenant de domaines tiers, facilitant ainsi des échanges inter-sites qui peuvent représenter un risque de sécurité important comme nous allons le voir.
+L’un des premiers comportements notables concerne la configuration **CORS particulièrement permissive**.
+Sans entrer dans les détails techniques à ce stade, l’application autorisé des requêtes JavaScript provenant de domaines tiers, facilitant ainsi des échanges inter-sites qui peuvent représenter un risque de sécurité important comme nous allons le voir à la suite de cet article.
 
 <figure class="text-center">
   <img
@@ -29,13 +30,15 @@ Sans entrer dans les détails techniques à ce stade, l’application autorisé 
 
 ## Un cookie créé dans de mauvaises conditions
 
-En analysant le parcours utilisateur classique pour accéder à du cashback vers une boutique partenaire, deux endpoints ont rapidement attiré mon attention :
+En analysant le parcours utilisateur classique pour accéder à du cashback vers une boutique partenaire, deux points de terminaison ont rapidement attiré mon attention :
 
-1. **/crossite/put_val/** - Cet endpoint accepté deux paramètres, **member_id** et **uid**, puis crée un cookie nommé crossite[**member_id**] dans lequel il stocke directement la valeur de **uid**.
+1. **/crossite/put_val/** \
+   Ce points de terminaison accepté deux paramètres, **member_id** et **uid**, puis crée un cookie nommé crossite[**member_id**] dans lequel il stocke directement la valeur de **uid**.
 
-2. **/crossite/get_val/** - Celui-ci renvoié la valeur du cookie précédemment stockée avec le parametre **member_id** correspondant.
+2. **/crossite/get_val/** \
+   Celui-ci renvoié la valeur du cookie précédemment stockée avec le parametre **member_id** correspondant.
 
-> Exemple l'url suivante `https://www.disclosed.com/crossite/put_val/?member_id=dfalqsumqjfirtk86a2e68phkm&uid=6981065608542` créer le cookie **crossite6add22nupndc1leekfk7q33uip=6981065608542** et `https://www.disclosed.com/crossite/get_val/?member_id=dfalqsumqjfirtk86a2e68phkm` renvoyais **6981065608542**
+> Exemple l'url suivante *https://www.disclosed.com/crossite/put_val/?member_id=dfalqsumqjfirtk86a2e68phkm&uid=6981065608542* créer le cookie **crossite6add22nupndc1leekfk7q33uip=6981065608542** et *https://www.disclosed.com/crossite/get_val/?member_id=dfalqsumqjfirtk86a2e68phkm* renvoyais **6981065608542**
 
 Le paramètre **uid** était le plus intéressant puisque son contenu était refleté directement dans la reponse, j'ai alors injecté une balise script telle que `<script>alert(document.cookie)</script>` dans celui ci puis j'ai appeller le second point de terminaison.
 

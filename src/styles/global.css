@@ -128,3 +128,8 @@
   animation: none;
   mix-blend-mode: normal;
 }
+
+blockquote {
+  @apply font-normal not-italic;
+  quotes: none;
+}

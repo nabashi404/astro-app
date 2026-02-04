@@ -12,11 +12,11 @@ export default defineConfig({
   site: 'https://nabashi-blog.vercel.app',
   integrations: [mdx(), react(), sitemap(), playformCompress()],
   markdown: {
-    remarkPlugins: [remarkModifiedTime, remarkReadingTime],
     shikiConfig: {
       theme: 'github-dark-high-contrast',
       wrap: true,
     },
+    remarkPlugins: [remarkModifiedTime, remarkReadingTime],
   },
   vite: {
     plugins: [tailwindcss()],
