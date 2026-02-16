@@ -8,15 +8,16 @@ export interface Props {
   title?: string;
   description?: string;
   author?: string;
+  image?: ImageMetadata;
 }
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION, author = SITE_AUTHOR } = Astro.props;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, author = SITE_AUTHOR, image } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="fr" dir="ltr">
   <head>
-    <BaseHead title={title} description={description} author={author} />
+    <BaseHead title={title} description={description} author={author} image={image} />
   </head>
   <body class="flex min-h-screen flex-col">
     <Header />
