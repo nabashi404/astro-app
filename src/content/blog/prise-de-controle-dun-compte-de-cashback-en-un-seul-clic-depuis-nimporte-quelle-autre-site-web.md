@@ -20,7 +20,7 @@ Ces failles mon notamment permis de voler les informations senssible des utilisa
 Ces découvertes une fois signalées et corrigées m’ont poussé à approfondir mes connaissances sur le fonctionnement interne de la plateforme.
 
 Une question s’est alors imposée :  
-*Comment l’application identifie-t-elle ses utilisateurs et valide-t-elle l’attribution du cashback ?*
+_Comment l’application identifie-t-elle ses utilisateurs et valide-t-elle l’attribution du cashback ?_
 
 ## Une communication inter-sites excessivement permissive
 
