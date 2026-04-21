@@ -16,7 +16,9 @@ type Props = CollectionEntry<'blog'>['data'] & {
 
 const { title, description, author, tags, pubDate, heroImage, lastUpdate, minutesRead } = Astro.props;
 
-const isUpdated = pubDate.toISOString().split('T')[0] !== new Date(lastUpdate).toISOString().split('T')[0];
+// const isUpdated = pubDate.toISOString().split('T')[0] !== new Date(lastUpdate).toISOString().split('T')[0];
+
+const isUpdated = false;
 ---
 
 <Layout title={title} description={description} author={author} image={heroImage}>
