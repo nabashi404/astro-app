@@ -1,32 +1,32 @@
 ---
 title: Comprendre l’automatisation des attaques sur les cartes de fidélité
 description: Cet article explore, à travers une expérience personnelle, les mécanismes d’automatisation ainsi que les failles observées dans les systèmes de différentes grandes enseignes de supermarchés
-tags: ['CORS', 'XSS', 'ATO']
-pubDate: '2026-02-03'
+tags: ['BRUTE FORCE', 'AUTOMATISATION', 'BOT']
+pubDate: '2026-04-22'
 heroImage: '@/assets/images/comprendre-lautomatisation-des-attaques-sur-les-cartes-de-fidelite.png'
 ---
 
 ## Introduction
 
-Le piratage de comptes a connu une expansion fulgurante à partir de 2020. Ce phénomène s’explique notamment par la démocratisation de nouveaux outils open source facilitant l’automatisation de ces attaques.
+Le piratage de comptes a connu une expansion fulgurante à partir de 2020. Ce phénomène s’explique notamment par la démocratisation d'un outil open source facilitant l’automatisation de ces attaques ainsi que d'une communauté active autour de celui.
 
 Ces évolutions ont conduit les attaquants à cibler des services web présentant **un fort potentiel de gain**. Parmi eux, les programmes de fidélité des grandes enseignes comme **Leclerc**, **Auchan** et **Carrefour** occupent une place importante de par un système de cagnotte fidélité.
 
-À travers mon expérience personnelle, je raconte les failles et techniques sophistiquées exploitées pour détourner les systèmes de fidélité des ces géants de la grande distribution.
+À travers mon expérience personnelle, je vais vous raconter les failles et techniques sophistiquées exploitées pour détourner les systèmes de fidélité de ces géants de la grande distribution.
 
 ## L'influence des cyber forums
 
-Tout commence en 2019. C’est à cette période que je découvre, pour la première fois, des forums liés à des activités illegal. En parcourant les différentes sections proposées, une en particulier attire rapidement mon attention : **le cracking**.
+Tout commence en 2019. C’est à cette période que je découvre, pour la première fois, des forums liés à des activités illégales. En parcourant les différentes sections proposées, une en particulier attire rapidement mon attention : **le cracking**.
 
-Cette section regroupé des utilisateurs qui partagait des *configs* permettant d’interagir automatiquement avec divers services web. Ces configurations sont utilisées pour automatiser des requêtes HTTP, souvent à grande échelle, à l’aide d’outils spécialisés.
+Cette section regroupait des utilisateurs qui partageaient des **configs** permettant d’interagir avec divers services web. Ces configurations sont utilisées pour automatiser des requêtes HTTP, souvent à grande échelle, à l’aide d'un outils bien connu des pirates **OpenBullet**.
 
-> Une *config* est une suite d’instructions spécifique à un site web, que des outils comme OpenBullet peuvent exécuter afin d’automatiser certaines actions (comme des tentatives de connexion à des comptes).
+> Une config est une suite d’instructions spécifique à un site web, que l'outil va exécuter afin d’automatiser certaines actions (comme des tentatives de connexion à des comptes).
 
 C'est avec le temp que j'ai commencé à comprend et apprend le fonctionnement reseau des application web, ce qui ce passé rellement quand nous essayons de nous connecté avec des indentifians de connexion.
 
 ## Découverte d'une faille sur Leclercdrive
 
-En 2021, je décide de m’exercer sur le site **leclercdrive.fr**. Mon objectif était de réussir *l'automatisation de tentatives de connexion* afin d'accéder à des comptes valides et donc d'obtenir leurs solde de fidélité.
+En 2021, je décide de m’exercer sur le site **leclercdrive.fr**. Mon objectif était de réussir l'automatisation de tentatives de connexion afin d'accéder à des comptes valides et, par conséquent, d'obtenir leur solde de fidélité.
 
 Acune personne n'avais en sa possession une tel configuration et pour cause le site disposait de mécanismes de protection avancés, notamment **DataDome**, une solution spécialisée dans la protection anti-bot, ainsi qu’un système de captcha tel que **hCaptcha**. Ces protections étaient censées empêcher toute automatisation abusive.
 
@@ -36,7 +36,7 @@ Tout cela était bien configuré sur des serveurs prédéfinis par Leclerc, util
 https://fd8-secure.leclercdrive.fr/drive/connecter.ashx
 ```
 
-Cependant, en regardant toute cette sécurité mise en place sur ces sous-domaines, je me suis demandé ce qui se passerait si je modifiais celui par un autre bien moins surveillé, le `www`, et c'est à ce moment-là que j'ai découvert que ma tentative de connexion a été exécutée avec succès sans appliquer aucune protection à celle-ci.
+Cependant, en regardant toute cette sécurité mise en place sur ces sous-domaines, je me suis demandé ce qui se passerait si je modifiais cela par un autre sous-domain bien moins surveillé, le `www`, et c'est à ce moment-là que j'ai découvert que ma tentative de connexion a été exécutée avec succès sans appliquer aucune protection à celle-ci.
 
 
 ## Impact et exploitation
