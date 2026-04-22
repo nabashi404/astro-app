@@ -53,7 +53,7 @@ Toutefois, avec un peu d'imagination, le code secret pouvait être détourné à
 
 ## Attaque par brut force
 
-Lors d'une phase de reconnaissance pour élargir la portée d'attaque, j'ai identifié deux sites **E.Leclerc** avec la même vulnérabilité, une faiblesse présente sur les pages d'inscription, maisonetloisirs.leclerc et auto.leclerc avais le meme template de page de creation de compte avec un formulaire pour ajouter sa carte. 
+Lors d'une phase de reconnaissance pour élargir la portée d'attaque, j'ai identifié deux sites **E.Leclerc** avec la même vulnérabilité, une faiblesse présente sur les pages d'inscription, **maisonetloisirs.leclerc** et **auto.leclerc** à l'époque avais le meme template de page de creation de compte avec un formulaire pour ajouter sa carte. 
 
 ![maisonetloisirs.leclerc-register-page](@/assets/images/maisonetloisirs.leclerc-register-page.png)
 
@@ -89,7 +89,7 @@ Il n'y avait rien eu de très faible chez Auchan, mise à part l'automatisation 
 
 ## Prendre le probleme à l'envers sur Carrefour
 
-Enfin, après l'expérience acquise, il m'est venu une idée au sujet de Carrefour.fr. En effet, j'avais appris que certaines cartes avaient des codes très simplifiés qui ont été autorisés dans le passé et que des utilisateurs avaient toujours, Si je connaissais d'avance le code secret, alors il me restait qu'à deviner des cartes valides et dans ce sens-là tout devient plus simple.
+Enfin, après l'expérience acquise, il m'est venu une idée au sujet du site Carrefour. En effet, j'avais appris que certaines cartes avaient des codes très simplifiés qui ont été autorisés dans le passé et que des utilisateurs avaient toujours, Si je connaissais d'avance le code secret, alors il me restait qu'à deviner des cartes valides et dans ce sens-là tout devient plus simple.
 
 Je me suis alors rendu sur le site web https://www.carrefour.fr et comme un utilisateur lambda j'ai lié une carte à mon compte. La requete ressemblé à queqlque chose comme :
 
